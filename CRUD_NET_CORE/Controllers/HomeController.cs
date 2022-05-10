@@ -13,11 +13,16 @@ namespace CRUD_NET_CORE.Controllers
 
         public HomeController(IEmployeeRepositry employeeRepositry)
         {
-            _employeeRepositry = employeeRepositry;
+            _employeeRepositry = new MockEmployeeRepositry();
         }
         public string Index()
         {
             return _employeeRepositry.GetEmployee(1).Name;
+        }
+        public JsonResult Details()
+        {
+            Employee model = _employeeRepositry.GetEmployee(1);
+            return Json(model);
         }
 
     }
